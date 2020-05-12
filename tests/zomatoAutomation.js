@@ -1,5 +1,5 @@
 
-var myPage {}
+var myPage = {}
 
 module.exports = {
     beforeEach: browser => {
@@ -10,5 +10,5 @@ module.exports = {
     after: browser => {
        myPage.end() 
     },
-    
+
 }
