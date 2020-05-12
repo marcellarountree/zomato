@@ -9,5 +9,6 @@ module.exports = {
 
     after: browser => {
        myPage.end() 
-    }
+    },
+    
 }
