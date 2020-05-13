@@ -1,5 +1,5 @@
 var zomatoCustomCommands = {
-    search5Items: function (item) {
+    search5Items: function (item) { //This will search for 5 different items in Salt Lake City, UT, USA
         this
             .setValue('@itemSearchInput', item)
             .pause(2000)
@@ -10,7 +10,7 @@ var zomatoCustomCommands = {
             .pause(2000)
         return this
     },
-    requestLinkToApplicationThroughEmailTwice: function (email) {
+    requestLinkToApplicationThroughEmailTwice: function (email) { // This will make two requests request for a link to download the mobile application through email
         this
             .click('@getTheAppButton')
             .pause(2000)
@@ -26,7 +26,7 @@ var zomatoCustomCommands = {
             .expect.element('body').text.to.contain("We've already sent an email to this ID today. Please try again after one hour")
         return this
     },
-    requestLinkToApplicationThroughPhoneTwice: function (phone) {
+    requestLinkToApplicationThroughPhoneTwice: function (phone) { // This will make two requests for a link to download the mobile application through phone number
         this
             .click('@getTheAppButton')
             .pause(3000)

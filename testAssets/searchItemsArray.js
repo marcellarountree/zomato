@@ -1,1 +1,1 @@
-module.exports = ['Fried Chicken', 'Pasta', 'Salad', 'Sushi', 'Seafood']
+module.exports = ['Fried Chicken', 'Pasta', 'Salad', 'Sushi', 'Seafood']// This array is used for test 1
