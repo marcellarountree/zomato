@@ -1,0 +1,1 @@
+module.exports = ['Fried Chicken', 'Pasta', 'Salad', 'Sushi', 'Seafood']
