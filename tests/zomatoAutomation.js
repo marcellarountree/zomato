@@ -1,15 +1,15 @@
+
 var myPage = {}
 
 module.exports = {
     beforeEach: browser => {
-        myPage = browser.page.zomatoPageObjects()
+        myPage = browser.page.zomatoPage()
         myPage.navigate()
     },
 
     after: browser => {
         myPage.end()
     },
-
     'Test 1: Search multiple restaurants/foods in Salt Lake City': browser => {
         var searchList = require('../testAssets/searchCitiesObject')
 
@@ -17,4 +17,10 @@ module.exports = {
             myPage.search5Items(searchList[i])
         }
     },
+    'Test 2:  Request link to application with email two times': browser => {
+        myPage.requestLinkToApplicationThroughEmailTwice('sam.thompson@devmounta.in')
+    },
+    'Test 3: Request a link to the application through phone two times': browser => {
+        myPage.requestLinkToApplicationThroughPhoneTwice(8444338686)
+    }
 }

@@ -2,12 +2,48 @@ var zomatoCustomCommands = {
     search5Items: function (item) {
         this
             .setValue('@itemSearchInput', item)
+            .pause(2000)
             .click('@searchButton')
             .expect.element('@titleResult').text.to.contain(item)
         this
             .click('@homePageButton')
-            .pause(5000)
+            .pause(2000)
         return this
+    },
+    requestLinkToApplicationThroughEmailTwice: function (email) {
+        this
+            .click('@getTheAppButton')
+            .pause(2000)
+            .setValue('@getAppLink', email)
+            .pause(2000)
+            .click('@shareAppLinkButton')
+        this
+            .api.refresh()
+            .pause(5000)
+        this
+            .setValue('@getAppLink', email)
+            .click('@shareAppLinkButton')
+            .expect.element('body').text.to.contain("We've already sent an email to this ID today. Please try again after one hour")
+        return this
+    },
+    requestLinkToApplicationThroughPhoneTwice: function (phone) {
+        this
+            .click('@getTheAppButton')
+            .pause(3000)
+            .click('@phoneRadioButton')
+            .setValue('@phoneInput', phone)
+            .pause(3000)
+            .click('@shareAppLinkButton')
+            .pause(2000)
+        this
+            .api.refresh()
+            .pause(5000)
+        this
+            .click('@phoneRadioButton')
+            .setValue('@phoneInput', phone)
+            .pause(3000)
+            .click('@shareAppLinkButton')
+            .expect.element('body').text.to.contain("We've already sent an email to this ID today. Please try again after one hour")
     }
 }
 
@@ -21,6 +57,11 @@ module.exports = {
         searchButton: 'div[class = "sc-CtfFt dwJcvv"]',
         titleResult: 'h1',
         homePageButton: 'a[class = "logo__container left"]',
+        getTheAppButton: 'a[class = "sc-krDsej sc-dTdPqK gUQWLM"]',
+        getAppLink: 'input[class = "sc-1yzxt5f-9 bbrwhB"]',
+        shareAppLinkButton: 'span[class = "sc-1kx5g6g-3 dkwpEa"]',
+        phoneRadioButton: 'input[value = "mobile"]',
+        phoneInput: 'input[placeholder = "type here..."]',
         locationDropdown:
             {selector: '//input[@placeholder="Salt Lake City"]',locateStrategy: 'xpath'},
         searchBar: 
