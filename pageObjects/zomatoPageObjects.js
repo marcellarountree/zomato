@@ -27,8 +27,6 @@ module.exports = {
             {selector: '//input[@placeholder="Search for restaurant, cuisine or a dish"]',locateStrategy: 'xpath'},
         searchMagnifying: 
             {selector: '//div[@class="sc-CtfFt dwJcvv"]"]',locateStrategy: 'xpath'},
-        homepageButton:
-            {selector: '//a[@class="logo__container left"]//img',locateStrategy: 'xpath'},
     //Search Filters//
         orderFoodOnline:
             {selector: '//span[contains(text(),"Order Food Online")]',locateStrategy: 'xpath'},
