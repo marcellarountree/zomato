@@ -1,49 +1,62 @@
 var zomatoCustomCommands = {
-    search5Items: function (item) { //This will search for 5 different items in Salt Lake City, UT, USA
+    search5Items: function (item) {
         this
             .setValue('@itemSearchInput', item)
-            .pause(2000)
+            .pause(5000)
             .click('@searchButton')
             .expect.element('@titleResult').text.to.contain(item)
         this
             .click('@homePageButton')
-            .pause(2000)
-        return this
-    },
-    requestLinkToApplicationThroughEmailTwice: function (email) { // This will make two requests request for a link to download the mobile application through email
-        this
-            .click('@getTheAppButton')
-            .pause(2000)
-            .setValue('@getAppLink', email)
-            .pause(2000)
-            .click('@shareAppLinkButton')
-        this
-            .api.refresh()
             .pause(5000)
-        this
-            .setValue('@getAppLink', email)
-            .click('@shareAppLinkButton')
-            .expect.element('body').text.to.contain("We've already sent an email to this ID today. Please try again after one hour")
         return this
     },
-    requestLinkToApplicationThroughPhoneTwice: function (phone) { // This will make two requests for a link to download the mobile application through phone number
+    requestLinkToApplicationThroughEmail: function (email) {
         this
             .click('@getTheAppButton')
             .pause(3000)
+            .setValue('@getAppLink', email)
+            .pause(3000)
+            .useXpath()
+            .click('@shareAppLinkButton')
+            .isVisible({ selector: '//span[contains(text(), "already sent an email to this ID today. Please try again after one hour")]', suppressNotFoundErrors: true }, function (results) {
+                let visible = results.value
+                if (visible === true) {
+                     this
+                        .expect.element('//span[contains(text(), "already sent an email to this ID today. Please try again after one hour")]').to.be.present
+                        console.log('Email has been recently used')
+                    }
+                else {
+                    this
+                        .expect.element('//span[contains(text(), "Email sent. Check your email id to find a link to download the app. Happy eating!")]').to.be.present
+                        console.log('Email sent')
+                }
+            })
+        return this
+    },
+    requestLinkToApplicationThroughPhone: function (phone) {
+        this
+            .click('@getTheAppButton')
+            .useXpath()
+            .pause(3000)
             .click('@phoneRadioButton')
+            .pause(3000)
             .setValue('@phoneInput', phone)
             .pause(3000)
             .click('@shareAppLinkButton')
-            .pause(2000)
-        this
-            .api.refresh()
-            .pause(5000)
-        this
-            .click('@phoneRadioButton')
-            .setValue('@phoneInput', phone)
-            .pause(3000)
-            .click('@shareAppLinkButton')
-            .expect.element('body').text.to.contain("We've already sent an email to this ID today. Please try again after one hour")
+            .isVisible({ selector: '//span[contains(text(), "already sent an email to this ID today. Please try again after one hour")]', suppressNotFoundErrors: true }, function (results) {
+                let visible = results.value
+                if (visible === true) {
+                    this
+                        .expect.element('//span[contains(text(), "already sent an email to this ID today. Please try again after one hour")]').to.be.present
+                        console.log('Email has been recently used')
+                }
+                else {
+                    this
+                        .expect.element('//span[contains(text(), "Message sent. Check your phone to find a link to download the app. Happy eating!")]').to.be.present
+                        console.log('Email sent')
+                }
+            })
+        return this
     }
 }
 
@@ -59,9 +72,9 @@ module.exports = {
         homePageButton: 'a[class = "logo__container left"]',
         getTheAppButton: 'a[class = "sc-krDsej sc-dTdPqK gUQWLM"]',
         getAppLink: 'input[class = "sc-1yzxt5f-9 bbrwhB"]',
-        shareAppLinkButton: 'span[class = "sc-1kx5g6g-3 dkwpEa"]',
         phoneRadioButton: 'input[value = "mobile"]',
         phoneInput: 'input[placeholder = "type here..."]',
+        shareAppLinkButton: { selector: '(//span[@class="sc-1kx5g6g-3 dkwpEa"])[1]', locateStrategy: 'xpath' }
         locationDropdown:
             {selector: '//input[@placeholder="Salt Lake City"]',locateStrategy: 'xpath'},
         searchBar: 
