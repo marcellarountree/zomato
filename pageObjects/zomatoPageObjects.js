@@ -16,8 +16,8 @@ var zomatoCustomCommands = {
             .pause(3000)
             .setValue('@getAppLink', email)
             .pause(3000)
-            .useXpath()
             .click('@shareAppLinkButton')
+            .useXpath()
             .isVisible({ selector: '//span[contains(text(), "already sent an email to this ID today. Please try again after one hour")]', suppressNotFoundErrors: true }, function (results) {
                 let visible = results.value
                 if (visible === true) {
@@ -36,13 +36,13 @@ var zomatoCustomCommands = {
     requestLinkToApplicationThroughPhone: function (phone) {
         this
             .click('@getTheAppButton')
-            .useXpath()
             .pause(3000)
             .click('@phoneRadioButton')
             .pause(3000)
             .setValue('@phoneInput', phone)
             .pause(3000)
             .click('@shareAppLinkButton')
+            .useXpath()
             .isVisible({ selector: '//span[contains(text(), "already sent an email to this ID today. Please try again after one hour")]', suppressNotFoundErrors: true }, function (results) {
                 let visible = results.value
                 if (visible === true) {
@@ -74,7 +74,7 @@ module.exports = {
         getAppLink: 'input[class = "sc-1yzxt5f-9 bbrwhB"]',
         phoneRadioButton: 'input[value = "mobile"]',
         phoneInput: 'input[placeholder = "type here..."]',
-        shareAppLinkButton: { selector: '(//span[@class="sc-1kx5g6g-3 dkwpEa"])[1]', locateStrategy: 'xpath' }
+        shareAppLinkButton: { selector: '(//span[@class="sc-1kx5g6g-3 dkwpEa"])[1]', locateStrategy: 'xpath' },
         locationDropdown:
             {selector: '//input[@placeholder="Salt Lake City"]',locateStrategy: 'xpath'},
         searchBar: 
