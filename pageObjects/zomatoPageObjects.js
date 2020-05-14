@@ -21,12 +21,14 @@ var zomatoCustomCommands = {
             .isVisible({ selector: '//span[contains(text(), "already sent an email to this ID today. Please try again after one hour")]', suppressNotFoundErrors: true }, function (results) {
                 let visible = results.value
                 if (visible === true) {
-                     this
+                    this
+                         .pause(5000)
                         .expect.element('//span[contains(text(), "already sent an email to this ID today. Please try again after one hour")]').to.be.present
                         console.log('Email has been recently used')
                     }
                 else {
                     this
+                        .pause(5000)
                         .expect.element('//span[contains(text(), "Email sent. Check your email id to find a link to download the app. Happy eating!")]').to.be.present
                         console.log('Email sent')
                 }
@@ -47,11 +49,13 @@ var zomatoCustomCommands = {
                 let visible = results.value
                 if (visible === true) {
                     this
+                        .pause(5000)
                         .expect.element('//span[contains(text(), "already sent an email to this ID today. Please try again after one hour")]').to.be.present
                         console.log('Email has been recently used')
                 }
                 else {
                     this
+                        .pause(5000)
                         .expect.element('//span[contains(text(), "Message sent. Check your phone to find a link to download the app. Happy eating!")]').to.be.present
                         console.log('Email sent')
                 }
