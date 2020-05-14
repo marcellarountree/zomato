@@ -11,7 +11,7 @@ module.exports = {
         myPage.end()
     },
     'Test 1: Search multiple foods in Salt Lake City': browser => {
-        var searchList = require('../testAssets/searchCitiesObject')
+        var searchList = require('../testAssets/searchItemsArray')
 
         for (var i = 0; i < searchList.length; i++) {
             myPage.search5Items(searchList[i])
