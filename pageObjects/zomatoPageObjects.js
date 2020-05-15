@@ -22,7 +22,6 @@ var zomatoCustomCommands = {
                 let visible = results.value
                 if (visible === true) {
                     this
-                         .pause(5000)
                         .expect.element('//span[contains(text(), "already sent an email to this ID today. Please try again after one hour")]').to.be.present
                         console.log('Email has been recently used')
                     }
@@ -49,7 +48,6 @@ var zomatoCustomCommands = {
                 let visible = results.value
                 if (visible === true) {
                     this
-                        .pause(5000)
                         .expect.element('//span[contains(text(), "already sent an email to this ID today. Please try again after one hour")]').to.be.present
                         console.log('Email has been recently used')
                 }
